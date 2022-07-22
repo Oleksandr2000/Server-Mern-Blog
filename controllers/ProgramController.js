@@ -2,7 +2,7 @@ import ProgramsModel from '../models/Programs.js';
 
 export const getAllPrograms = async (req, res) => {
   try {
-    const fullPrograms = await ProgramsModel.find('title, description, price, coach');
+    const fullPrograms = await ProgramsModel.find();
 
     res.json(fullPrograms);
   } catch (err) {
