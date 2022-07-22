@@ -9,7 +9,7 @@ import { registerValidation, loginValidation, postCreateValidation } from './val
 
 import { handleValidationErrors, checkAuth } from './utils/index.js';
 
-import { UserController, PostController } from './controllers/index.js';
+import { UserController, PostController, ProgramsController } from './controllers/index.js';
 
 mongoose
   .connect(
@@ -41,6 +41,9 @@ app.use('/uploads', express.static('uploads'));
 app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
 app.post('/auth/register', registerValidation, handleValidationErrors, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
+app.get('/programs/:id', ProgramsController.getOnePrograms);
+app.get('/programs', ProgramsController.getAllPrograms);
+app.get('/filter/:id', ProgramsController.filterPrograms);
 
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   res.json({
