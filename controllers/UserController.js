@@ -104,3 +104,31 @@ export const getMe = async (req, res) => {
     });
   }
 };
+
+export const grantAccess = async (req, res) => {
+  try {
+    if (req.body.hash === 'test') {
+      await UserModel.updateOne(
+        {
+          email: req.body.email,
+        },
+        {
+          access: req.body.programId,
+        },
+      );
+
+      res.json({
+        success: true,
+      });
+    } else {
+      res.json({
+        error: 'Невірний код доступу',
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: 'Не удалось получить доступ',
+    });
+  }
+};
