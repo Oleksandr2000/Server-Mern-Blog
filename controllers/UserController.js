@@ -113,7 +113,7 @@ export const grantAccess = async (req, res) => {
           email: req.body.email,
         },
         {
-          access: req.body.programId,
+          $push: { access: req.body.programId },
         },
       );
 

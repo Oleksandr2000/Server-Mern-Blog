@@ -15,11 +15,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    avatarUrl: String,
     access: {
       type: Array,
       default: [],
     },
+    avatarUrl: String,
   },
   {
     timestamps: true,
